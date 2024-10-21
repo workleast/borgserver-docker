@@ -1,7 +1,7 @@
 services:
   borg-server:
     restart: always
-    image: ghcr.io/grantbevis/borg-server
+    image: workleast/borg-server
     container_name: borg-server
     volumes:
       - path/to/repository:/backups
