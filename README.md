@@ -7,6 +7,8 @@ Borgbackup Server Container is a fork of the original work from https://github.c
 
 In this fork, I have updated all the packages to the latest version (at the time of writing) for the best of security and functionality.
 
+Xem hướng dẫn sử dụng bằng Tiếng Việt tại đây: https://workleast.com/sao-luu-du-lieu-bang-borg-backup-docker/
+
 ### Usage
 ```
 services:
