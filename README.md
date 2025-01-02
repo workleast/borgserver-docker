@@ -36,7 +36,7 @@ Place your ssh's public keys in the file 'ssh/authorized_keys'
 #### * execute file init.sh
 This container uses 'borg' user with uid(1000):gid(1000) to login and write backup data to the REPO_DIR directory (defined in .env file). Thus, this step is to make sure all required files and directories are with proper ownership. Otherwise, you may encounter errors regarding permission problems.
 ```
-sh init.sh
+sudo sh init.sh
 ```
 #### * connect
 On the Borg's client, connect to the server using user 'borg' (eg. ssh://borg@your-server-ip:2022/backups)
