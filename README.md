@@ -26,11 +26,11 @@ services:
 #### * .env
 ```
 TZ=Asia/Ho_Chi_Minh
-REPO_DIR=${HOME}/dump-repo
+REPO_DIR=path/to/your/repo
 SSH_DIR=${PWD}/ssh
 ```
 - Change the 'TZ' variable to the time zone where you live
-- Change the '${HOME}/dump-repo' in file '.env' to the actual path of your Borg's repository directory (where your data will be backed up to)
+- Change the 'path/to/your/repo' to the actual path of your Borg's repository directory (where your data will be backed up to)
 #### * ssh/authorized_keys
 Place your ssh's public keys in the file 'ssh/authorized_keys'
 #### * execute file init.sh
