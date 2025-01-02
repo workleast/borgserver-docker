@@ -1,7 +1,7 @@
 # Borgbackup Server Container
 ![alt text](https://borgbackup.readthedocs.io/en/stable/_static/logo.png "Borgbackup")
 
-### Description
+## Description
 
 Borgbackup Server Container is a fork of the original work from https://github.com/grantbevis/borg-server⁠
 
@@ -9,8 +9,8 @@ In this fork, I have updated all the packages to the latest version (at the time
 
 Xem hướng dẫn sử dụng bằng Tiếng Việt tại đây: https://workleast.com/sao-luu-du-lieu-bang-borg-backup-docker/
 
-### Usage
-#### * docker-compose.yml
+## Usage
+### docker-compose.yml
 ```
 services:
   borg-server:
@@ -23,7 +23,7 @@ services:
     ports:
       - "2022:22"
 ```
-#### * .env
+### .env
 ```
 TZ=Asia/Ho_Chi_Minh
 REPO_DIR=path/to/your/repo
@@ -31,12 +31,13 @@ SSH_DIR=${PWD}/ssh
 ```
 - Change the 'TZ' variable to the time zone where you live
 - Change the 'path/to/your/repo' to the actual path of your Borg's repository directory (where your data will be backed up to)
-#### * ssh/authorized_keys
+### ssh/authorized_keys
 Place your ssh's public keys in the file 'ssh/authorized_keys'
-#### * execute file init.sh
+### init.sh
 This container uses 'borg' user with uid(1000):gid(1000) to login and write backup data to the REPO_DIR directory (defined in .env file). Thus, this step is to make sure all required files and directories are with proper ownership. Otherwise, you may encounter errors regarding permission problems.
+* Note: If you are re-using an existing Borg's repo, you also need to run this script to change its ownership.
 ```
 sudo sh init.sh
 ```
-#### * connect
+## Connect
 On the Borg's client, connect to the server using user 'borg' (eg. ssh://borg@your-server-ip:2022/backups)
