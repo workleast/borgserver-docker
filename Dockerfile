@@ -1,5 +1,5 @@
-FROM alpine:edge
-LABEL maintainer="workleast"
+FROM alpine:20240923
+LABEL maintainer="workleast.com"
 
 #Install Borg & SSH
 RUN apk add --no-cache \
@@ -19,12 +19,14 @@ RUN adduser -D -u 1000 borg && \
 RUN mkdir /home/borg/.ssh
 RUN chown borg.borg /home/borg/.ssh
 
-COPY supervisord.conf /etc/supervisord.conf
-COPY service.sh /usr/local/bin/service.sh
-COPY sshkey.sh /usr/local/bin/sshkey.sh
+COPY built-in/supervisord.conf /etc/supervisord.conf
+COPY built-in/service.sh /usr/local/bin/service.sh
+COPY built-in/gen-sshkey.sh /usr/local/bin/gen-sshkey.sh
+COPY built-in/fix-permission.sh /usr/local/bin/fix-permission.sh
 
-RUN chmod +x /usr/local/bin/sshkey.sh
 RUN chmod +x /usr/local/bin/service.sh
+RUN chmod +x /usr/local/bin/gen-sshkey.sh
+RUN chmod +x /usr/local/bin/fix-permission.sh
 
 EXPOSE 22
 VOLUME /etc/ssh
