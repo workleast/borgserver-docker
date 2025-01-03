@@ -23,10 +23,10 @@ then
   exit 1
 fi
 
-REPO_DIR_STR=$(eval "grep ^${REPO_DIR_VAR}= $ENV_FILE | cut -d '=' -f2")
+REPO_DIR_STR=$(eval "grep ^${REPO_DIR_VAR}= $ENV_FILE | tail -1 | cut -d '=' -f2")
 REPO_DIR=$(eval "sudo -u $REAL_USER -H -s eval 'echo $REPO_DIR_STR'")
 
-SSH_DIR_STR=$(eval "grep ^${SSH_DIR_VAR}= $ENV_FILE | cut -d '=' -f2")
+SSH_DIR_STR=$(eval "grep ^${SSH_DIR_VAR}= $ENV_FILE | tail -1 | cut -d '=' -f2")
 SSH_DIR=$(eval "sudo -u $REAL_USER -H -s eval 'echo $SSH_DIR_STR'")
 
 if [ ! $REPO_DIR_STR ] || [ ! $SSH_DIR_STR ]
