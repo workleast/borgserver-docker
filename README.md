@@ -31,13 +31,22 @@ SSH_DIR=${PWD}/ssh
 ```
 - Change the 'TZ' variable to the time zone where you live
 - Change the 'path/to/your/repo' to the actual path of your Borg's repository directory (where your data will be backed up to)
-### ssh/authorized_keys
-Place your ssh's public keys in the file 'ssh/authorized_keys'
+### SSH keys
+If you've already had your own SSH keys, place your ssh's public keys in the file 'ssh/authorized_keys'. Otherwise, you can use the built-in script to create one. Please see below for instruction.
 ### prepare.sh
 This container uses 'borg' user with uid(1000):gid(1000) to login and write backup data to the REPO_DIR directory (defined in .env file). This script is to make sure all required files and directories are set to proper ownership. Otherwise, you may encounter errors regarding permission.
 * Note: If you are re-using an existing Borg's repo, you also need to run this script to fix its ownership.
 ```
 sudo sh prepare.sh
+```
+## Run
+```
+docker compose up -d
+```
+### SSH keys auto-generate
+After running the container, you can execute the built-in 'sshkey.sh' script to generate SSH keys:
+```
+docker exec -it borg-server sshkey.sh
 ```
 ## Connect
 On the Borg's client, connect to the server using user 'borg' (eg. ssh://borg@your-server-ip:2022/backups)
