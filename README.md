@@ -30,23 +30,24 @@ REPO_DIR=/path/to/your/repo
 SSH_DIR=${PWD}/ssh
 ```
 - Change the 'TZ' variable to the time zone where you live
-- Change the 'path/to/your/repo' to the actual path of your Borg's repository directory (where your data will be backed up to)
-### SSH keys
+- Change the '/path/to/your/repo' to the actual path of your Borg's repository directory (where your data will be backed up to)
+### ssh/authorized_keys
 If you've already had your own SSH keys, place your ssh's public keys in the file 'ssh/authorized_keys'. Otherwise, you can use the built-in script to create one. Please see below for instruction.
-### prepare.sh
-This container uses 'borg' user with uid(1000):gid(1000) to login and write backup data to the REPO_DIR directory (defined in .env file). This script is to make sure all required files and directories are set to proper ownership. Otherwise, you may encounter errors regarding permission.
-* Note: If you are re-using an existing Borg's repo, you also need to run this script to fix its ownership.
-```
-sudo sh prepare.sh
-```
 ## Run
 ```
 docker compose up -d
 ```
-### SSH keys auto-generate
-After running the container, you can execute the built-in 'sshkey.sh' script to generate SSH keys:
+### Fix permission
+This container uses 'borg' user with uid(1000):gid(1000) to login and write backup data to the REPO_DIR directory on your host (defined in .env file). However, different systems usually have different uid:gid for their users which may result in permission problems. To workaround with this, I have added a script in the container which synchronizes the ownership and permission of relevant files and directories.
+* Note: If you are re-using an existing Borg's repo, you also need to run this script to fix permission errors.
 ```
-docker exec -it borg-server sshkey.sh
+docker exec -it borg-server fix-permission.sh
+```
+### SSH keys auto-generate
+If you are not using your own SSH keys, you can use this script to generate one. Here is how to get it done
+```
+docker exec -it borg-server gen-sshkey.sh
 ```
 ## Connect
-On the Borg's client, connect to the server using user 'borg' (eg. ssh://borg@your-server-ip:2022/backups)
+- Upload the SSH's private key to the Borg Client
+- On the Borg Client, connect to the Borg Server using ssh://borg@your-server-ip:2022/backups
