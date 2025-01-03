@@ -1,9 +1,9 @@
-# Borgbackup Server Container
+# Borgbackup Server Docker
 ![alt text](https://borgbackup.readthedocs.io/en/stable/_static/logo.png "Borgbackup")
 
 ## Description
 
-Borgbackup Server Container is a fork of the original work from https://github.com/grantbevis/borg-server⁠
+Borgbackup Server Docker is a fork of the original work from https://github.com/grantbevis/borg-server⁠
 
 In this fork, I have updated all the packages to the latest version (at the time of writing) for the best of security and functionality. I also fixed ownership errors that may occur on some linux distros.
 
@@ -26,7 +26,7 @@ services:
 ### .env
 ```
 TZ=Asia/Ho_Chi_Minh
-REPO_DIR=path/to/your/repo
+REPO_DIR=/path/to/your/repo
 SSH_DIR=${PWD}/ssh
 ```
 - Change the 'TZ' variable to the time zone where you live
