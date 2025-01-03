@@ -56,3 +56,6 @@ fi
 echo "- Changing ownership to 1000:1000"
 chown -R 1000:1000 ${REPO_DIR} ${SSH_DIR} || { echo "Failed to change ownership" && exit 1; }
 echo "Ownership changed successfully"
+echo "- Changing permission of files in ${SSH_DIR} to 600"
+chmod 600 ${SSH_DIR}/* || { echo "Failed to change permission" && exit 1; }
+echo "Permission changed successfully"
