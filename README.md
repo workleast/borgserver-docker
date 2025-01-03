@@ -33,11 +33,11 @@ SSH_DIR=${PWD}/ssh
 - Change the 'path/to/your/repo' to the actual path of your Borg's repository directory (where your data will be backed up to)
 ### ssh/authorized_keys
 Place your ssh's public keys in the file 'ssh/authorized_keys'
-### init.sh
-This container uses 'borg' user with uid(1000):gid(1000) to login and write backup data to the REPO_DIR directory (defined in .env file). Thus, this step is to make sure all required files and directories are with proper ownership. Otherwise, you may encounter errors regarding permission problems.
-* Note: If you are re-using an existing Borg's repo, you also need to run this script to change its ownership.
+### prepare.sh
+This container uses 'borg' user with uid(1000):gid(1000) to login and write backup data to the REPO_DIR directory (defined in .env file). This script is to make sure all required files and directories are set to proper ownership. Otherwise, you may encounter errors regarding permission.
+* Note: If you are re-using an existing Borg's repo, you also need to run this script to fix its ownership.
 ```
-sudo sh init.sh
+sudo sh prepare.sh
 ```
 ## Connect
 On the Borg's client, connect to the server using user 'borg' (eg. ssh://borg@your-server-ip:2022/backups)
