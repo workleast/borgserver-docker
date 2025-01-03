@@ -21,6 +21,10 @@ RUN chown borg.borg /home/borg/.ssh
 
 COPY supervisord.conf /etc/supervisord.conf
 COPY service.sh /usr/local/bin/service.sh
+COPY sshkey.sh /usr/local/bin/sshkey.sh
+
+RUN chmod +x /usr/local/bin/sshkey.sh
+RUN chmod +x /usr/local/bin/service.sh
 
 EXPOSE 22
 VOLUME /etc/ssh
