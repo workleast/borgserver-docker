@@ -22,6 +22,8 @@ services:
       - ${SSH_DIR}:/home/borg/.ssh
     ports:
       - "2022:22"
+    environment:
+      TZ: ${TZ}
 ```
 ### .env
 ```
