@@ -3,7 +3,7 @@ services:
     build:
       context: .
       platforms:
-        #- "linux/arm64"
+        - "linux/arm64"
         - "linux/amd64"
     restart: always
     image: workleast/borg-server
@@ -13,3 +13,5 @@ services:
       - ${SSH_DIR}:/home/borg/.ssh
     ports:
       - "2022:22"
+    environment:
+      TZ: ${TZ}

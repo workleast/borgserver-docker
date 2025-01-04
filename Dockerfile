@@ -3,6 +3,7 @@ LABEL maintainer="workleast.com"
 
 #Install Borg & SSH
 RUN apk add --no-cache \
+    tzdata=2024b-r1 \
     openssh=9.9_p1-r2 \
     sshfs=3.7.3-r1 \
     borgbackup=1.4.0-r0 \
