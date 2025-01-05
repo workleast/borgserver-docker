@@ -13,10 +13,10 @@ Xem hướng dẫn sử dụng bằng Tiếng Việt tại đây: https://workle
 ### docker-compose.yml
 ```
 services:
-  borg-server:
+  borgserver:
     restart: always
-    image: workleast/borg-server
-    container_name: borg-server
+    image: workleast/borgserver
+    container_name: borgserver
     volumes:
       - ${REPO_DIR}:/backups
       - ${SSH_DIR}:/home/borg/.ssh
@@ -43,12 +43,12 @@ docker compose up -d
 This container uses 'borg' user with uid(1000):gid(1000) to login and write backup data to the REPO_DIR directory on your host (defined in .env file). However, different systems usually have different uid:gid for their users which may result in permission problems. To workaround with this, I have added a script in the container which synchronizes the ownership and permission of relevant files and directories.
 * Note: If you are re-using an existing Borg's repo, you also need to run this script to fix permission errors.
 ```
-docker exec -it borg-server fix-permission.sh
+docker exec -it borgserver fix-permission.sh
 ```
 ### SSH keys auto-generate
 If you are not using your own SSH keys, you can use this script to generate one. Here is how to get it done
 ```
-docker exec -it borg-server gen-sshkey.sh
+docker exec -it borgserver gen-sshkey.sh
 ```
 ## Connect
 - Upload the SSH's private key to the Borg Client
